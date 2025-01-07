@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function SearchBar({ onSearch }) {
+function SearchBar({ onSearch, setCity }) {
+  const handleChange = (event) => {
+    setCity(event.target.value);
+  };
+
   return (
     <>
-      <input></input>
+      <input
+        onChange={handleChange}>
+      </input>
       <button onClick={onSearch}>Search</button>
     </>
   )
@@ -35,12 +41,11 @@ export default function WeatherApp() {
   return (
     <>
       <div>
-        <SearchBar onSearch={fetchWeather}></SearchBar>
+        <SearchBar onSearch={fetchWeather} setCity={setCity}></SearchBar>
       </div>
       {weather ? (
         <div>Temp in {city} is: {weather.current.temp_c}</div>) : (<div>Press button</div>)
       }
-      {weather ? console.log(weather.current.uv) : console.log("")}
     </>
   )
 }
