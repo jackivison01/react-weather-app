@@ -9,6 +9,7 @@ function SearchBar({ onSearch, setCity }) {
   return (
     <>
       <input
+        placeholder='Enter a city:'
         onChange={handleChange}>
       </input>
       <button onClick={onSearch}>Search</button>
@@ -46,7 +47,7 @@ export default function WeatherApp() {
         <SearchBar onSearch={fetchWeather} setCity={setCity}></SearchBar>
       </div>
       {weather ? (
-        <div>Temp in {validCity} is: {weather.current.temp_c}</div>) : (<div>Press button</div>)
+        <div>Temp in {validCity} is: {weather.current.temp_c}</div>) : (<div>Press Search</div>)
       }
     </>
   )
