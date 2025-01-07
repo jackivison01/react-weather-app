@@ -19,6 +19,7 @@ function SearchBar({ onSearch, setCity }) {
 export default function WeatherApp() {
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState('London');
+  const [validCity, setValidCity] = useState('');
 
   const fetchWeather = async () => {
     try {
@@ -33,6 +34,7 @@ export default function WeatherApp() {
         }
       );
       setWeather(response.data);
+      setValidCity(city)
     } catch (err) {
       setWeather(null);
     }
@@ -44,7 +46,7 @@ export default function WeatherApp() {
         <SearchBar onSearch={fetchWeather} setCity={setCity}></SearchBar>
       </div>
       {weather ? (
-        <div>Temp in {city} is: {weather.current.temp_c}</div>) : (<div>Press button</div>)
+        <div>Temp in {validCity} is: {weather.current.temp_c}</div>) : (<div>Press button</div>)
       }
     </>
   )
