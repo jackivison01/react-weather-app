@@ -19,8 +19,9 @@ function SearchBar({ onSearch, setCity }) {
 
 export default function WeatherApp() {
   const [weather, setWeather] = useState(null);
-  const [city, setCity] = useState('London');
+  const [city, setCity] = useState('');
   const [validCity, setValidCity] = useState('');
+  const [error, setError] = useState('');
 
   const fetchWeather = async () => {
     try {
@@ -35,9 +36,11 @@ export default function WeatherApp() {
         }
       );
       setWeather(response.data);
-      setValidCity(city)
+      setValidCity(city);
+      setError('');
     } catch (err) {
       setWeather(null);
+      setError('Enter a valid city');
     }
   };
 
@@ -49,6 +52,7 @@ export default function WeatherApp() {
       {weather ? (
         <div>Temp in {validCity} is: {weather.current.temp_c}</div>) : (<div>Press Search</div>)
       }
+      <div>{error}</div>
     </>
   )
 }
