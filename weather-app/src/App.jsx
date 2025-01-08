@@ -54,7 +54,6 @@ function WeatherTemperature({ weather }) {
 export default function WeatherApp() {
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState('');
-  const [validCity, setValidCity] = useState('');
   const [error, setError] = useState('');
   const [weatherMessage, setWeatherMessage] = useState('');
 
@@ -75,7 +74,6 @@ export default function WeatherApp() {
       const location = response.data.location
       const msg = `${location.name}, ${location.country}`;
       setWeatherMessage(msg);
-      setValidCity(city);
       setError('');
     } catch (err) {
       setWeather(null);
