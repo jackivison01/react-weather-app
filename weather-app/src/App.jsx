@@ -43,6 +43,14 @@ function WeatherIcon({ weather }) {
   )
 }
 
+function WeatherTemperature({ weather }) {
+  return (
+    <>
+      {weather ? (<div>{weather.current.temp_c}{"\u00B0"}</div>) : (<div></div>)}
+    </>
+  )
+}
+
 export default function WeatherApp() {
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState('');
@@ -65,7 +73,7 @@ export default function WeatherApp() {
       setWeather(response.data);
 
       const location = response.data.location
-      const msg = `Temp in ${location.name}, ${location.country} is ${response.data.current.temp_c}`;
+      const msg = `${location.name}, ${location.country}`;
       setWeatherMessage(msg);
       setValidCity(city);
       setError('');
@@ -82,6 +90,9 @@ export default function WeatherApp() {
       </div>
       <div>
         <WeatherIcon weather={weather}></WeatherIcon>
+      </div>
+      <div>
+        <WeatherTemperature weather={weather}></WeatherTemperature>
       </div>
       <div>
         <WeatherMessage weather={weather} weatherMessage={weatherMessage}></WeatherMessage>
