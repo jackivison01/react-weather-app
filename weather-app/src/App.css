@@ -11,9 +11,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -22,6 +24,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -39,4 +42,36 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.weather-app {
+  display: flex;
+  flex-direction: column;
+  /* Stack elements vertically */
+  align-items: center;
+  /* Center horizontally */
+  justify-content: center;
+  /* Center vertically */
+  height: 100vh;
+  /* Full viewport height */
+  text-align: center;
+  /* Center align text inside divs */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.weather-app div {
+  margin: 5px 0;
+  /* Add some space between elements */
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+}
+
+.weather-icon {
+  width: 100px;
+  height: auto;
+  /* Maintain aspect ratio */
 }

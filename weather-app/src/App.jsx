@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './App.css';
 
 function SearchBar({ onSearch, setCity }) {
   const handleChange = (event) => {
@@ -36,7 +37,7 @@ function WeatherIcon({ weather }) {
   return (
     <>
       {weather ? (
-        <img src={weather.current.condition.icon} alt="Weather Icon"></img>
+        <img className='weather-icon' src={weather.current.condition.icon} alt="Weather Icon"></img>
       ) :
         (<></>)}
     </>
@@ -82,20 +83,20 @@ export default function WeatherApp() {
   };
 
   return (
-    <>
+    <div className='weather-app'>
       <div>
         <SearchBar onSearch={fetchWeather} setCity={setCity}></SearchBar>
       </div>
       <div>
-        <WeatherIcon weather={weather}></WeatherIcon>
+        <WeatherIcon weather={weather} />
       </div>
       <div>
-        <WeatherTemperature weather={weather}></WeatherTemperature>
+        <WeatherTemperature weather={weather} />
       </div>
       <div>
-        <WeatherMessage weather={weather} weatherMessage={weatherMessage}></WeatherMessage>
+        <WeatherMessage weather={weather} weatherMessage={weatherMessage} />
       </div>
-      <div>{error}</div>
-    </>
+      <div className='error-message'>{error}</div>
+    </div>
   )
 }
