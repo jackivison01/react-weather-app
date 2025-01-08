@@ -6,13 +6,39 @@ function SearchBar({ onSearch, setCity }) {
     setCity(event.target.value);
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      onSearch();
+    };
+  };
+
   return (
     <>
       <input
         placeholder='Enter a city:'
-        onChange={handleChange}>
+        onChange={handleChange}
+        onKeyDown={handleKeyPress}>
       </input>
       <button onClick={onSearch}>Search</button>
+    </>
+  )
+}
+
+function WeatherMessage({ weather, weatherMessage }) {
+  return (
+    <>
+      {weather ? (<div>{weatherMessage}</div>) : (<div>Press Search</div>)}
+    </>
+  )
+}
+
+function WeatherIcon({ weather }) {
+  return (
+    <>
+      {weather ? (
+        <img src={weather.current.condition.icon} alt="Weather Icon"></img>
+      ) :
+        (<></>)}
     </>
   )
 }
@@ -22,6 +48,7 @@ export default function WeatherApp() {
   const [city, setCity] = useState('');
   const [validCity, setValidCity] = useState('');
   const [error, setError] = useState('');
+  const [weatherMessage, setWeatherMessage] = useState('');
 
   const fetchWeather = async () => {
     try {
@@ -36,6 +63,10 @@ export default function WeatherApp() {
         }
       );
       setWeather(response.data);
+
+      const location = response.data.location
+      const msg = `Temp in ${location.name}, ${location.country} is ${response.data.current.temp_c}`;
+      setWeatherMessage(msg);
       setValidCity(city);
       setError('');
     } catch (err) {
@@ -49,9 +80,12 @@ export default function WeatherApp() {
       <div>
         <SearchBar onSearch={fetchWeather} setCity={setCity}></SearchBar>
       </div>
-      {weather ? (
-        <div>Temp in {validCity} is: {weather.current.temp_c}</div>) : (<div>Press Search</div>)
-      }
+      <div>
+        <WeatherIcon weather={weather}></WeatherIcon>
+      </div>
+      <div>
+        <WeatherMessage weather={weather} weatherMessage={weatherMessage}></WeatherMessage>
+      </div>
       <div>{error}</div>
     </>
   )
