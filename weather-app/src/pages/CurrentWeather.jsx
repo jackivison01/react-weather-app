@@ -1,37 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
-
-function SearchBar({ onSearch, setCity }) {
-  const handleChange = (event) => {
-    setCity(event.target.value);
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      onSearch();
-    };
-  };
-
-  return (
-    <>
-      <input
-        placeholder='Enter a city:'
-        onChange={handleChange}
-        onKeyDown={handleKeyPress}>
-      </input>
-      <button onClick={onSearch}>Search</button>
-    </>
-  )
-}
-
-function WeatherMessage({ weather, weatherMessage }) {
-  return (
-    <>
-      {weather ? (<div>{weatherMessage}</div>) : (<div>Press Search</div>)}
-    </>
-  )
-}
+import SearchBar from '../components/SearchBar';
+import WeatherMessage from '../components/WeatherMessage';
 
 function WeatherIcon({ weather }) {
   return (
