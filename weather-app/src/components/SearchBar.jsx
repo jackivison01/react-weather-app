@@ -5,6 +5,12 @@ export default function SearchBar({ onSearch, setCity }) {
     const [inputValue, setInputValue] = useState("");
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
 
+    const handleClearButtonClick = () => {
+        setInputValue("");
+        setCity("");
+        setFilteredSuggestions([]);
+    }
+
     const getCitySugesstions = async (input) => {
         try {
             const API_KEY = import.meta.env.VITE_APP_WEATHER_API_KEY;
@@ -68,6 +74,7 @@ export default function SearchBar({ onSearch, setCity }) {
                     boxSizing: "border-box",
                 }}
             />
+            <button onClick={handleClearButtonClick}>Clear</button>
 
             {/* Suggestions Dropdown */}
             {filteredSuggestions.length > 0 && (
