@@ -3,25 +3,7 @@ import axios from 'axios';
 import SearchBar from "../components/SearchBar";
 import WeatherMessage from "../components/WeatherMessage";
 import useForecastTemps from "../hooks/useForecastTemps";
-
-function ForecastIcon({ icon }) {
-    return (
-        <>
-            {icon ? (
-                <img className='weather-icon' src={icon} alt="Weather Icon" style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "10px",
-                    padding: "5px 0",
-                    width: "35px",
-                    height: "auto",
-                }}></img>
-            ) :
-                (<></>)}
-        </>
-    )
-}
+import Icon from "../components/Icon";
 
 export default function ForecastWeather() {
     const [forecast, setForecast] = useState(null);
@@ -77,7 +59,7 @@ export default function ForecastWeather() {
                                 padding: "5px 10px",
                             }}
                         >
-                            <ForecastIcon icon={forecastObj.icon} />
+                            <Icon icon={forecastObj.icon} />
                             <div style={{ fontSize: "16px" }}>
                                 {forecastObj.time}:00
                             </div>

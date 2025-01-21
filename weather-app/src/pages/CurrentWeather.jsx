@@ -3,17 +3,7 @@ import axios from 'axios';
 import './App.css';
 import SearchBar from '../components/SearchBar';
 import WeatherMessage from '../components/WeatherMessage';
-
-function WeatherIcon({ weather }) {
-  return (
-    <>
-      {weather ? (
-        <img className='weather-icon' src={weather.current.condition.icon} alt="Weather Icon"></img>
-      ) :
-        (<></>)}
-    </>
-  )
-}
+import Icon from '../components/Icon';
 
 function WeatherTemperature({ weather }) {
   return (
@@ -60,7 +50,7 @@ export default function WeatherApp() {
         <SearchBar onSearch={fetchWeather} setCity={setCity}></SearchBar>
       </div>
       <div>
-        <WeatherIcon weather={weather} />
+        {weather ? (<Icon icon={weather.current.condition.icon} />) : (<></>)}
       </div>
       <div>
         <WeatherTemperature weather={weather} />
