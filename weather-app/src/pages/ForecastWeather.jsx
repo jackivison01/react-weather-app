@@ -4,6 +4,17 @@ import SearchBar from "../components/SearchBar";
 import WeatherMessage from "../components/WeatherMessage";
 import useForecastTemps from "../hooks/useForecastTemps";
 
+function ForecastIcon({ icon }) {
+    return (
+        <>
+            {icon ? (
+                <img className='weather-icon' src={icon} alt="Weather Icon"></img>
+            ) :
+                (<></>)}
+        </>
+    )
+}
+
 export default function ForecastWeather() {
     const [forecast, setForecast] = useState(null);
     const [city, setCity] = useState('');
@@ -44,11 +55,33 @@ export default function ForecastWeather() {
             <SearchBar onSearch={fetchForecast} setCity={setCity}></SearchBar>
             <div>
                 <WeatherMessage weather={forecast} weatherMessage={weatherMessage} />
-                <div className='forecast-temps'>
+                <div className="forecast-temps">
                     {forecastTemps.map((forecastObj, index) => (
-                        <div key={index} className='forecast-temp'>{forecastObj.time}:00,  {forecastObj.temp}°</div>
+                        <div
+                            key={index}
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                gap: "10px",
+                                padding: "5px 0",
+                            }}
+                        >
+                            <img
+                                src={forecastObj.icon}
+                                alt="Weather Icon"
+                                style={{
+                                    width: "30px",
+                                    height: "30px",
+                                }}
+                            />
+                            <div style={{ fontSize: "16px" }}>
+                                {forecastObj.time}:00, {forecastObj.temp}°
+                            </div>
+                        </div>
                     ))}
                 </div>
+
             </div>
             <div className='error-message'>{error}</div>
         </div>

@@ -10,6 +10,7 @@ export default function useForecastTemps() {
       const forecastObject = {
         time: i,
         temp: forecastData[0].hour[i].temp_c,
+        icon: forecastData[0].hour[i].condition.icon,
       };
       tempForecastTemps.push(forecastObject);
     }
