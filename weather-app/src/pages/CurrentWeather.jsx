@@ -4,14 +4,7 @@ import './App.css';
 import SearchBar from '../components/SearchBar';
 import WeatherMessage from '../components/WeatherMessage';
 import Icon from '../components/Icon';
-
-function WeatherTemperature({ weather }) {
-  return (
-    <>
-      {weather ? (<div>{weather.current.temp_c}{"\u00B0"}</div>) : (<div></div>)}
-    </>
-  )
-}
+import WeatherTemperature from '../components/WeatherTemperature';
 
 export default function WeatherApp() {
   const [weather, setWeather] = useState(null);
