@@ -3,7 +3,7 @@ import axios from 'axios';
 import SearchBar from "../components/SearchBar";
 import WeatherMessage from "../components/WeatherMessage";
 import useForecastTemps from "../hooks/useForecastTemps";
-import Icon from "../components/Icon";
+import ForecastDisplay from "../components/ForecastDisplay";
 
 export default function ForecastWeather() {
     const [forecast, setForecast] = useState(null);
@@ -48,25 +48,7 @@ export default function ForecastWeather() {
                 <WeatherMessage weather={forecast} weatherMessage={weatherMessage} />
                 <div className="forecast-temps" style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
                     {forecastTemps.map((forecastObj, index) => (
-                        <div
-                            key={index}
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                gap: "10px",
-                                padding: "5px 10px",
-                            }}
-                        >
-                            <Icon icon={forecastObj.icon} />
-                            <div style={{ fontSize: "16px" }}>
-                                {forecastObj.time}:00
-                            </div>
-                            <div style={{ fontSize: "16px" }}>
-                                {forecastObj.temp}°
-                            </div>
-                        </div>
+                        <ForecastDisplay forecastObj={forecastObj} index={index} />
                     ))}
                 </div>
 
