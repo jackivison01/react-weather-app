@@ -60,6 +60,7 @@ export default function ForecastWeather() {
 
     return (
         <div>
+            <h1>Weather Forecast</h1>
             <SearchBar onSearch={fetchForecast} setCity={setCity}></SearchBar>
             <div>
                 <WeatherMessage weather={forecast} weatherMessage={weatherMessage} />

@@ -55,6 +55,7 @@ export default function WeatherApp() {
 
   return (
     <div className='weather-app'>
+      <h1>Current Weather</h1>
       <div>
         <SearchBar onSearch={fetchWeather} setCity={setCity}></SearchBar>
       </div>
