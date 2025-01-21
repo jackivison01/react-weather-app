@@ -58,7 +58,7 @@ export default function ForecastWeather() {
                 <WeatherMessage weather={forecast} weatherMessage={weatherMessage} />
                 <div className='forecast-temps'>
                     {forecastTemps.map((forecastObj, index) => (
-                        <div key={index} className='forecast-temp'>{forecastObj.time}: {forecastObj.temp}°</div>
+                        <div key={index} className='forecast-temp'>{forecastObj.time}:00,  {forecastObj.temp}°</div>
                     ))}
                 </div>
             </div>
