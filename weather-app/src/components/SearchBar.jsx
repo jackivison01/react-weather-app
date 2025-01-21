@@ -62,19 +62,22 @@ export default function SearchBar({ onSearch, setCity }) {
     return (
         <div className="search-bar-container" style={{ position: "relative" }}>
             {/* Input Field */}
-            <input
-                type="text"
-                placeholder="Enter a city:"
-                value={inputValue}
-                onChange={handleChange}
-                onKeyDown={handleKeyPress}
-                style={{
-                    width: "100%",
-                    padding: "10px",
-                    boxSizing: "border-box",
-                }}
-            />
-            <button onClick={handleClearButtonClick}>Clear</button>
+            <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
+                <input
+                    type="text"
+                    placeholder="Enter a city:"
+                    value={inputValue}
+                    onChange={handleChange}
+                    onKeyDown={handleKeyPress}
+                    style={{
+                        width: "100%",
+                        padding: "10px",
+                        boxSizing: "border-box",
+                    }}
+                />
+                <button onClick={handleClearButtonClick}>Clear</button>
+                <button onClick={onSearch}>Search</button>
+            </div>
 
             {/* Suggestions Dropdown */}
             {filteredSuggestions.length > 0 && (
@@ -109,11 +112,6 @@ export default function SearchBar({ onSearch, setCity }) {
                     ))}
                 </ul>
             )}
-
-            {/* Search Button */}
-            <button onClick={onSearch} style={{ marginTop: "10px" }}>
-                Search
-            </button>
         </div>
     );
 }
