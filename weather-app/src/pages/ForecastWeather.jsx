@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import SearchBar from "../components/SearchBar";
 import WeatherMessage from "../components/WeatherMessage";
 
@@ -27,6 +28,7 @@ export default function ForecastWeather() {
             setWeatherMessage(msg);
             setError('');
         } catch (err) {
+            console.log(err.message)
             setForecast(null);
             setError('Enter a valid city');
         }
