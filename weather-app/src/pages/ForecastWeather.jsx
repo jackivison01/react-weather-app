@@ -63,21 +63,25 @@ export default function ForecastWeather() {
             <SearchBar onSearch={fetchForecast} setCity={setCity}></SearchBar>
             <div>
                 <WeatherMessage weather={forecast} weatherMessage={weatherMessage} />
-                <div className="forecast-temps">
+                <div className="forecast-temps" style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
                     {forecastTemps.map((forecastObj, index) => (
                         <div
                             key={index}
                             style={{
                                 display: "flex",
+                                flexDirection: "column",
                                 alignItems: "center",
                                 justifyContent: "center",
                                 gap: "10px",
-                                padding: "5px 0",
+                                padding: "5px 10px",
                             }}
                         >
                             <ForecastIcon icon={forecastObj.icon} />
                             <div style={{ fontSize: "16px" }}>
-                                {forecastObj.time}:00, {forecastObj.temp}°
+                                {forecastObj.time}:00
+                            </div>
+                            <div style={{ fontSize: "16px" }}>
+                                {forecastObj.temp}°
                             </div>
                         </div>
                     ))}
