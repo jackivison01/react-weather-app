@@ -1,7 +1,7 @@
 export default function WeatherMessage({ weather, weatherMessage }) {
   return (
     <>
-      {weather ? (<div>{weatherMessage}</div>) : (<></>)}
+      {weather ? (<div style={{ paddingBottom: "10px" }}>{weatherMessage}</div>) : (<></>)}
     </>
   )
 }

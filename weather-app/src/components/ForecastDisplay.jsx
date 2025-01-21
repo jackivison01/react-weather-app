@@ -11,6 +11,7 @@ export default function ForecastDisplay({ forecastObj, index }) {
         justifyContent: "center",
         gap: "10px",
         padding: "5px 10px",
+        border: "1px solid #ccc",
       }}
     >
       <Icon icon={forecastObj.icon} />
