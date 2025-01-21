@@ -2,26 +2,14 @@ import React, { useState } from "react";
 import axios from 'axios';
 import SearchBar from "../components/SearchBar";
 import WeatherMessage from "../components/WeatherMessage";
+import useForecastTemps from "../hooks/useForecastTemps";
 
 export default function ForecastWeather() {
     const [forecast, setForecast] = useState(null);
     const [city, setCity] = useState('');
     const [error, setError] = useState('');
     const [weatherMessage, setWeatherMessage] = useState('');
-    const [forecastTemps, setForecastTemps] = useState([]);
-
-    const processForecast = (forecastData) => {
-        const tempForecastTemps = [];
-        const hour = new Date().getHours();
-        for (let i = hour; i <= hour + 6; i++) {
-            const forecastObject = {
-                time: i,
-                temp: forecastData[0].hour[i].temp_c
-            }
-            tempForecastTemps.push(forecastObject);
-        }
-        setForecastTemps(tempForecastTemps);
-    }
+    const [forecastTemps, processForecast] = useForecastTemps([]);
 
     const fetchForecast = async () => {
         try {
