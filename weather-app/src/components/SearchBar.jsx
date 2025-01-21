@@ -60,7 +60,7 @@ export default function SearchBar({ onSearch, setCity }) {
     };
 
     return (
-        <div className="search-bar-container" style={{ position: "relative" }}>
+        <div className="search-bar-container" style={{ position: "relative", paddingBottom: "15px" }}>
             {/* Input Field */}
             <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
                 <input
