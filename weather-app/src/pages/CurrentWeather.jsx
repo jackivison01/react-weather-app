@@ -5,6 +5,7 @@ import SearchBar from '../components/SearchBar';
 import WeatherMessage from '../components/WeatherMessage';
 import Icon from '../components/Icon';
 import WeatherTemperature from '../components/WeatherTemperature';
+import WeatherDisplay from '../components/WeatherDisplay';
 
 export default function WeatherApp() {
   const [weather, setWeather] = useState(null);
@@ -39,19 +40,7 @@ export default function WeatherApp() {
   return (
     <div className='weather-app'>
       <h1>Current Weather</h1>
-      <div>
-        <SearchBar onSearch={fetchWeather} setCity={setCity}></SearchBar>
-      </div>
-      <div>
-        {weather ? (<Icon icon={weather.current.condition.icon} />) : (<></>)}
-      </div>
-      <div>
-        <WeatherTemperature weather={weather} />
-      </div>
-      <div>
-        <WeatherMessage weather={weather} weatherMessage={weatherMessage} />
-      </div>
-      <div className='error-message'>{error}</div>
+      <WeatherDisplay weather={weather} fetchWeather={fetchWeather} setCity={setCity} error={error} weatherMessage={weatherMessage} />
     </div>
   )
 }
