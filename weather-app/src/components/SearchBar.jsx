@@ -1,29 +1,49 @@
 import React, { useState } from "react";
+import axios from 'axios';
 
-export default function SearchBar({ onSearch, setCity, suggestions }) {
+export default function SearchBar({ onSearch, setCity }) {
     const [inputValue, setInputValue] = useState("");
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+
+    const getCitySugesstions = async (input) => {
+        try {
+            const API_KEY = import.meta.env.VITE_APP_WEATHER_API_KEY;
+            const response = await axios.get(
+                `https://api.weatherapi.com/v1/search.json`,
+                {
+                    params: {
+                        key: API_KEY,
+                        q: input,
+                    },
+                }
+            );
+            const autocomplete = response.data;
+            const suggestions = [];
+            for (let i = 0; i < autocomplete.length; i++) {
+                const newSuggestion = {
+                    city: autocomplete[i].name,
+                    country: autocomplete[i].country,
+                }
+                suggestions.push(newSuggestion.city + ", " + newSuggestion.country);
+            }
+            setFilteredSuggestions(suggestions);
+        } catch (err) {
+            console.log(err.message);
+        }
+    }
 
     const handleChange = (event) => {
         const value = event.target.value;
         setInputValue(value);
         setCity(value); // Update the parent state
-
-        if (value) {
-            // Filter suggestions based on input value
-            const filtered = suggestions.filter((suggestion) =>
-                suggestion.toLowerCase().startsWith(value.toLowerCase())
-            );
-            setFilteredSuggestions(filtered);
-        } else {
-            setFilteredSuggestions([]);
-        }
+        getCitySugesstions(value);
     };
 
     const handleSuggestionClick = (suggestion) => {
         setInputValue(suggestion); // Set the selected suggestion
         setCity(suggestion); // Update parent city
         setFilteredSuggestions([]); // Clear the suggestions
+        onSearch();
     };
 
     const handleKeyPress = (event) => {
