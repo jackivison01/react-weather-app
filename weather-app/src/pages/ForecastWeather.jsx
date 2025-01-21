@@ -8,7 +8,15 @@ function ForecastIcon({ icon }) {
     return (
         <>
             {icon ? (
-                <img className='weather-icon' src={icon} alt="Weather Icon"></img>
+                <img className='weather-icon' src={icon} alt="Weather Icon" style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "10px",
+                    padding: "5px 0",
+                    width: "35px",
+                    height: "auto",
+                }}></img>
             ) :
                 (<></>)}
         </>
@@ -67,14 +75,7 @@ export default function ForecastWeather() {
                                 padding: "5px 0",
                             }}
                         >
-                            <img
-                                src={forecastObj.icon}
-                                alt="Weather Icon"
-                                style={{
-                                    width: "30px",
-                                    height: "30px",
-                                }}
-                            />
+                            <ForecastIcon icon={forecastObj.icon} />
                             <div style={{ fontSize: "16px" }}>
                                 {forecastObj.time}:00, {forecastObj.temp}°
                             </div>
