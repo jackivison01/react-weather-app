@@ -11,6 +11,8 @@ export default function ForecastWeather() {
     const [error, setError] = useState('');
     const [weatherMessage, setWeatherMessage] = useState('');
     const [forecastTemps, processForecast] = useForecastTemps([]);
+    const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+    const [inputValue, setInputValue] = useState("");
 
     const fetchForecast = async () => {
         try {
@@ -33,6 +35,9 @@ export default function ForecastWeather() {
             const msg = `${location.name}, ${location.country}`;
             setWeatherMessage(msg);
             setError('');
+            setInputValue("");
+            setCity("");
+            setFilteredSuggestions([]);
         } catch (err) {
             console.log(err.message)
             setForecast(null);
@@ -43,7 +48,14 @@ export default function ForecastWeather() {
     return (
         <div>
             <h1>Weather Forecast</h1>
-            <SearchBar onSearch={fetchForecast} setCity={setCity}></SearchBar>
+            <SearchBar
+                onSearch={fetchForecast}
+                setCity={setCity}
+                filteredSuggestions={filteredSuggestions}
+                setFilteredSuggestions={setFilteredSuggestions}
+                inputValue={inputValue}
+                setInputValue={setInputValue}>
+            </SearchBar>
             <div>
                 <WeatherMessage weather={forecast} weatherMessage={weatherMessage} />
                 <div className="forecast-temps" style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
