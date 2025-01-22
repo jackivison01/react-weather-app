@@ -12,6 +12,8 @@ export default function WeatherApp() {
   const [city, setCity] = useState('');
   const [error, setError] = useState('');
   const [weatherMessage, setWeatherMessage] = useState('');
+  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
   const fetchWeather = async () => {
     try {
@@ -31,6 +33,9 @@ export default function WeatherApp() {
       const msg = `${location.name}, ${location.country}`;
       setWeatherMessage(msg);
       setError('');
+      setInputValue("");
+      setCity("");
+      setFilteredSuggestions([]);
     } catch (err) {
       setWeather(null);
       setError('Enter a valid city');
@@ -40,7 +45,16 @@ export default function WeatherApp() {
   return (
     <div className='weather-app'>
       <h1>Current Weather</h1>
-      <WeatherDisplay weather={weather} fetchWeather={fetchWeather} setCity={setCity} error={error} weatherMessage={weatherMessage} />
+      <WeatherDisplay
+        weather={weather}
+        fetchWeather={fetchWeather}
+        setCity={setCity} error={error}
+        weatherMessage={weatherMessage}
+        filteredSuggestions={filteredSuggestions}
+        setFilteredSuggestions={setFilteredSuggestions}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+      />
     </div>
   )
 }

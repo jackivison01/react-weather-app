@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios';
 
-export default function SearchBar({ onSearch, setCity }) {
-    const [inputValue, setInputValue] = useState("");
-    const [filteredSuggestions, setFilteredSuggestions] = useState([]);
-
+export default function SearchBar({ onSearch, setCity, filteredSuggestions, setFilteredSuggestions, inputValue, setInputValue }) {
     const handleClearButtonClick = () => {
         setInputValue("");
         setCity("");
